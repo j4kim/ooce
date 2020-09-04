@@ -17,8 +17,7 @@ class CreateThingsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('parent_id')->nullable()->constrained('things');
-            $table->string('name')->nullable();
-            $table->string('key');
+            $table->string('name');
             $table->text('description')->nullable();
         });
     }
