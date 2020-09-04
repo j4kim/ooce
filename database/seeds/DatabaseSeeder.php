@@ -1,5 +1,6 @@
 <?php
 
+use App\Place;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $place = new Place();
+        $place->key = "Neuve 3";
+        $place->save();
     }
 }
