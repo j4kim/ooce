@@ -1,6 +1,6 @@
 <?php
 
-use App\Place;
+use App\Thing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('places/{place}', function ($place) {
-    return Place::find($place);
+Route::get('{thing}', function ($thing) {
+    return Thing::find($thing);
 });
