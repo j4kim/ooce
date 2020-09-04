@@ -16,6 +16,7 @@ class CreateThingsTable extends Migration
         Schema::create('things', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('place_id')->constrained();
             $table->foreignId('parent_id')->constrained('things');
             $table->string('name');
             $table->string('key');
