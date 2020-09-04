@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{thing}', function ($thing) {
-    return Thing::find($thing);
+Route::get('{thing}', function (Thing $thing) {
+    return $thing;
 });
