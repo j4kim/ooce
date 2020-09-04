@@ -12,16 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $place = new Thing();
-        $place->key = "Neuve 3";
-        $place->save();
-
-        $cellar = new Thing();
-        $cellar->key = "Cave";
-        $place->children()->save($cellar);
-
-        $box = new Thing();
-        $box->key = "Box";
-        $cellar->children()->save($box);
+        $place = Thing::create(['key' => 'Neuve 3']);
+        $cellar = $place->children()->create(['key' => 'Cave']);
+        $box = $cellar->children()->create(['key' => 'Box']);
     }
 }
