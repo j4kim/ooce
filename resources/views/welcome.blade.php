@@ -53,6 +53,9 @@
                 <div class="title m-b-md">
                     Oocé
                 </div>
+                <form action="search" method="get">
+                    <input type="search" name="q" placeholder="Recherche">
+                </form>
             </div>
         </div>
     </body>
