@@ -5,6 +5,6 @@
       Oocé
   </div>
   <form action="search" method="get">
-      <input type="search" name="q" placeholder="Recherche">
+      <input type="search" name="q" placeholder="Rechercher un truc">
   </form>
 @endsection
