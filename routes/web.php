@@ -35,5 +35,5 @@ Route::post('/create', function (Request $request) {
 });
 
 Route::get('/{thing}', function (Thing $thing) {
-    return view('thing', $thing);
+    return view('thing', compact('thing'));
 });
