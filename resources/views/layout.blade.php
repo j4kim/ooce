@@ -45,6 +45,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            a {
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
