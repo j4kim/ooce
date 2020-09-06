@@ -21,5 +21,12 @@ Route::get('/', function () {
 
 Route::get('/search', function (Request $request) {
     $thing = Thing::find($request->q);
+    if ($thing) {
+        return redirect($thing->id);
+    }
+    return "No results, sorry";
+});
+
+Route::get('/{thing}', function (Thing $thing) {
     return view('thing', $thing);
 });
