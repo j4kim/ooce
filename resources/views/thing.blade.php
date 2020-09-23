@@ -4,6 +4,11 @@
   <p>
     @if ($thing->parent)
       Rangé dans: {{ $thing->parent->name }}
+      <form action="{{ $thing->id }}/detach" method="post">
+        @csrf
+        @method('PUT')
+        <button>Sortir</button>
+      </form>
     @else
       <form action="{{ $thing->id }}/move" method="post">
         @csrf

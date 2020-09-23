@@ -43,3 +43,9 @@ Route::put('/{thing}/move', function (Thing $thing, Request $request) {
     $thing->save();
     return redirect($thing->id);
 });
+
+Route::put('/{thing}/detach', function (Thing $thing) {
+    $thing->parent_id = null;
+    $thing->save();
+    return redirect($thing->id);
+});
