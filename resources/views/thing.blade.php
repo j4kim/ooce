@@ -3,9 +3,13 @@
 @section('content')
   <p>
     @if ($thing->parent)
-      Parent: {{$thing->parent->name}}
+      Rangé dans: {{ $thing->parent->name }}
     @else
-      Sorti
+      <form action="{{ $thing->id }}/move" method="post">
+        @csrf
+        @method('PUT')
+        Ranger dans: <input type="number" name="parent_id">
+      </form>
     @endif
   </p>
   {{$thing->id}} - {{$thing->name}}

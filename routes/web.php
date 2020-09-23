@@ -37,3 +37,9 @@ Route::post('/create', function (Request $request) {
 Route::get('/{thing}', function (Thing $thing) {
     return view('thing', compact('thing'));
 });
+
+Route::put('/{thing}/move', function (Thing $thing, Request $request) {
+    $thing->parent_id = $request->parent_id;
+    $thing->save();
+    return redirect($thing->id);
+});
