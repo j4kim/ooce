@@ -39,13 +39,11 @@ Route::get('/{thing}', function (Thing $thing) {
 });
 
 Route::put('/{thing}/move', function (Thing $thing, Request $request) {
-    $thing->parent_id = $request->parent_id;
-    $thing->save();
+    $thing->moveTo($request->parent_id);
     return redirect($thing->id);
 });
 
 Route::put('/{thing}/detach', function (Thing $thing) {
-    $thing->parent_id = null;
-    $thing->save();
+    $thing->moveTo(null);
     return redirect($thing->id);
 });
