@@ -31,8 +31,6 @@ Route::get('/search', function (Request $request) {
     return "No results, sorry";
 });
 
-Route::view('/add', 'add');
-
 Route::post('/create', function (Request $request) {
     $thing = Thing::create($request->all());
     return redirect($thing->id);

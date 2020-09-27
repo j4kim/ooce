@@ -18,5 +18,8 @@
       </form>
     @endif
   </p>
-  <a href="add" class="title">+</a>
+  <form action="create" method="post">
+    @csrf
+    <button>Ajouter un truc</button>
+  </form>
 @endsection
