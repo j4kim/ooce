@@ -1,6 +1,9 @@
 @extends('layout')
 
 @section('content')
+  <h2>
+    {{$thing->id}} <b>{{$thing->name}}</b>
+  </h2>
   <p>
     @if ($thing->parent)
       Rangé dans: {{ $thing->parent->name }}
@@ -15,5 +18,5 @@
       </form>
     @endif
   </p>
-  {{$thing->id}} - {{$thing->name}}
+  <a href="add" class="title">+</a>
 @endsection

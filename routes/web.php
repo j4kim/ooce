@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $thing = Thing::first();
+    if (!$thing) {
+        $thing = Thing::create();
+    }
+    return redirect($thing->id);
 });
 
 Route::get('/search', function (Request $request) {

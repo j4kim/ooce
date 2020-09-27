@@ -42,6 +42,10 @@
                 font-size: 84px;
             }
 
+            h2 {
+                font-weight: lighter;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -54,6 +58,12 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
+                <h1 class="title m-b-md">
+                    Oocé
+                </h1>
+                <form action="search" method="get" class="m-b-md">
+                    <input type="search" name="q" placeholder="Rechercher un truc">
+                </form>
                 @yield('content')
             </div>
         </div>
