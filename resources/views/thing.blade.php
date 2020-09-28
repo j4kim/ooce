@@ -6,9 +6,9 @@
   </h2>
   <p>
     @if ($thing->parent)
-      Rangé dans: {{ $thing->parent->name }}
       <form action="{{ $thing->id }}/detach" method="post">
         @csrf @method('PUT')
+        Rangé dans: {{ $thing->parent->name }}
         <button>Sortir</button>
       </form>
     @else
