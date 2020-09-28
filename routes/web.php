@@ -40,6 +40,11 @@ Route::get('/{thing}', function (Thing $thing) {
     return view('thing', compact('thing'));
 });
 
+Route::put('/{thing}/update', function (Thing $thing, Request $request) {
+    $thing->update($request->all());
+    return redirect($thing->id);
+});
+
 Route::put('/{thing}/move', function (Thing $thing, Request $request) {
     $thing->moveTo($request->parent_id);
     return redirect($thing->id);

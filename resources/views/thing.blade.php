@@ -5,6 +5,13 @@
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
   <p>
+    <form action="{{$thing->id}}/update" method="post">
+      @csrf @method('PUT')
+      <input type="text" name="name" value="{{$thing->name}}">
+      <button>Renommer</button>
+    </form>
+  </p>
+  <p>
     @if ($thing->parent)
       <form action="{{ $thing->id }}/detach" method="post">
         @csrf @method('PUT')
