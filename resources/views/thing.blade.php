@@ -43,10 +43,10 @@
       </form>
     @endif
   </p>
-  <form action="create" method="post">
+  <form action="{{$thing->id}}/add" method="post">
     @csrf
     <button type="submit" class="btn btn-primary">
-      Ajouter un truc
+      Ajouter un truc dans ce truc
     </button>
   </form>
 @endsection

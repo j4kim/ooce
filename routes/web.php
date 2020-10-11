@@ -31,13 +31,13 @@ Route::get('/search', function (Request $request) {
     return "No results, sorry";
 });
 
-Route::post('/create', function (Request $request) {
-    $thing = Thing::create($request->all());
-    return redirect($thing->id);
-});
-
 Route::get('/{thing}', function (Thing $thing) {
     return view('thing', compact('thing'));
+});
+
+Route::post('/{thing}/add', function (Thing $thing, Request $request) {
+    $newthing = $thing->children()->create($request->all());
+    return redirect($newthing->id);
 });
 
 Route::put('/{thing}/update', function (Thing $thing, Request $request) {
