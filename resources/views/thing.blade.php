@@ -21,7 +21,10 @@
     @if ($thing->parent)
       <form action="{{ $thing->id }}/detach" method="post">
         @csrf @method('PUT')
-        Rangé dans: {{ $thing->parent->name }}
+        Rangé dans:
+        <a href="{{ $thing->parent->id }}">
+          {{ $thing->parent->name }}
+        </a>
         <button type="submit" class="btn btn-primary">
           Sortir
         </button>
