@@ -16,12 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $root = Thing::doesntHave('parent')->orderBy('created_at')->first();
     $orphans = Thing::doesntHave('parent')
+                    ->where('id', '!=', $root->id)
                     ->orderBy('moved_at', 'desc')
                     ->take(20)
                     ->get();
-    return view('index', compact('orphans'));
+    return view('index', compact('root', 'orphans'));
 })->name('index');
+
+Route::post('/', function (Thing $thing) {
+    $thing = Thing::create();
+    return redirect(route('show', $thing->id));
+})->name('create');
 
 Route::get('/search', function (Request $request) {
     $thing = Thing::find($request->q);
