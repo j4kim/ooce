@@ -9,7 +9,7 @@
   </div>
   @endif
   <h2>
-    {{$thing->id}} <b>{{$thing->name}}</b>
+    {{ $thing->id }} <b>{{ $thing->name }}</b>
   </h2>
   <p>
     {{ $thing->description }}
