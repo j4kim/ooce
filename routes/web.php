@@ -58,3 +58,9 @@ Route::put('/{thing}/detach', function (Thing $thing) {
     $thing->moveTo(null);
     return redirect(route('show', $thing->id));
 })->name('detach');
+
+Route::delete('/{thing}', function (Thing $thing) {
+    $parentId = $thing->parent_id;
+    $thing->delete();
+    return redirect($parentId ? route('show', $parentId) : '/');
+})->name('delete');

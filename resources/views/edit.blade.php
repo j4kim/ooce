@@ -5,7 +5,7 @@
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
   <p>
-    <form action="{{ route('update', $thing->id) }}" method="post">
+    <form action="{{ route('update', $thing->id) }}" method="post" id="update-form">
       @csrf @method('PUT')
       <div class="row">
         <div class="col-12 col-sm-6 col-md-4 mb-2">
@@ -20,10 +20,19 @@
           Rangé dans:
           <input class="form-control" name="parent_id" value="{{ $thing->parent_id }}">
         </div>
-        <div class="col-12 mt-2">
-          <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </div>
       </div>
     </form>
+    <div class="row">
+      <div class="col-12 mt-2 d-flex">
+        <div class="flex-fill">
+          <a class="btn btn-light mr-2" href="{{ route('show', $thing->id) }}">Annuler</a>
+          <button type="submit" form="update-form" class="btn btn-primary">Enregistrer</button>
+        </div>
+        <form action="{{ route('delete', $thing->id) }}" method="post">
+          @csrf @method('DELETE')
+          <button type="submit" class="btn btn-danger mr-2">Supprimer</button>
+        </form>
+      </div>
+    </div>
   </p>
 @endsection
