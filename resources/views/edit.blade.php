@@ -25,7 +25,7 @@
         <a href="{{ route('show', $thing->parent->id) }}">
           {{ $thing->parent->name }}
         </a>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-secondary btn-sm ml-2">
           Sortir
         </button>
       </form>
@@ -36,17 +36,10 @@
         <input
           style="max-width:100px"
           class="form-control d-inline"
-          type="number"
           name="parent_id"
           min="1"
         >
       </form>
     @endif
   </p>
-  <form action="{{ route('add', $thing->id) }}" method="post">
-    @csrf
-    <button type="submit" class="btn btn-primary">
-      Ajouter un truc dans ce truc
-    </button>
-  </form>
 @endsection
