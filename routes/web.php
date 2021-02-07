@@ -52,7 +52,13 @@ Route::post('/{thing}/add', function (Thing $thing, Request $request) {
 })->name('add');
 
 Route::put('/{thing}/update', function (Thing $thing, Request $request) {
-    $thing->update($request->all());
+    if ($request->hasFile('picture')) {
+        $picture_path = $request->file('picture')->store('uploads');
+    }
+    $thing->update(array_merge(
+        $request->except('picture'),
+        compact('picture_path')
+    ));
     return redirect(route('show', $thing->id));
 })->name('update');
 

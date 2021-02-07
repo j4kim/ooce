@@ -5,7 +5,7 @@
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
   <p>
-    <form action="{{ route('update', $thing->id) }}" method="post" id="update-form">
+    <form action="{{ route('update', $thing->id) }}" method="post" id="update-form" enctype="multipart/form-data">
       @csrf @method('PUT')
       <div class="row">
         <div class="col-12 col-sm-6 col-md-4 mb-2">
@@ -15,6 +15,10 @@
         <div class="col-12 mb-2">
           Description:
           <textarea class="form-control" name="description" class="btn btn-primary">{{ $thing->description}}</textarea>
+        </div>
+        <div class="col-12 mb-2">
+          Photo:
+          <input class="form-control" type="file" name="picture">
         </div>
         <div class="col-12 col-sm-6 col-md-4 mb-2">
           Rangé dans:
