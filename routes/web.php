@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $thing = Thing::first();
-    if (!$thing) {
-        $thing = Thing::create();
-    }
-    return redirect($thing->id);
+    $orphans = Thing::doesntHave('parent')
+                    ->orderBy('moved_at', 'desc')
+                    ->take(20)
+                    ->get();
+    return view('index', compact('orphans'));
 })->name('index');
 
 Route::get('/search', function (Request $request) {
