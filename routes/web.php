@@ -35,6 +35,10 @@ Route::get('/{thing}', function (Thing $thing) {
     return view('thing', compact('thing'));
 });
 
+Route::get('/{thing}/edit', function (Thing $thing) {
+    return view('edit', compact('thing'));
+});
+
 Route::post('/{thing}/add', function (Thing $thing, Request $request) {
     $newthing = $thing->children()->create($request->all());
     return redirect($newthing->id);
