@@ -12,6 +12,11 @@
     {{ $thing->id }} <b>{{ $thing->name }}</b>
   </h2>
   <p style="white-space:pre">{{ $thing->description }}</p>
+  @if($thing->picture_path)
+    <div class="mb-3">
+      <img src="{{  Storage::url($thing->picture_path) }}" style="max-width:300px; max-height:300px">
+    </div>
+  @endif
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
     <i class="bi bi-pencil-fill mr-1"></i> Modifier
   </a>
