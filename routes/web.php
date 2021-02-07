@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::post('/', function (Thing $thing) {
     $thing = Thing::create();
-    return redirect(route('show', $thing->id));
+    return redirect(route('edit', $thing->id));
 })->name('create');
 
 Route::get('/search', function (Request $request) {
