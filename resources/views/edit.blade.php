@@ -12,7 +12,7 @@
           <input class="form-control" type="text" name="name" autofocus value="{{$thing->name}}">
         </div>
         <div class="col-12 col-sm-6 col-md-4">
-          <button type="submit" class="btn btn-primary">Renommer</button>
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
       </div>
     </form>
