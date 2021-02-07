@@ -56,16 +56,6 @@ Route::put('/{thing}/update', function (Thing $thing, Request $request) {
     return redirect(route('show', $thing->id));
 })->name('update');
 
-Route::put('/{thing}/move', function (Thing $thing, Request $request) {
-    $thing->moveTo($request->parent_id);
-    return redirect(route('show', $thing->id));
-})->name('move');
-
-Route::put('/{thing}/detach', function (Thing $thing) {
-    $thing->moveTo(null);
-    return redirect(route('show', $thing->id));
-})->name('detach');
-
 Route::delete('/{thing}', function (Thing $thing) {
     $parentId = $thing->parent_id;
     $thing->delete();
