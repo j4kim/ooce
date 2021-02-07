@@ -21,6 +21,7 @@ class Thing extends Model
     public function moveTo($parent_id)
     {
         $this->parent_id = $parent_id;
+        $this->moved_at = now();
         $this->save();
     }
 }
