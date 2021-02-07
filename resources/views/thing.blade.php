@@ -12,14 +12,16 @@
     {{ $thing->id }} <b>{{ $thing->name }}</b>
   </h2>
   <p style="white-space:pre">{{ $thing->description }}</p>
-  <a href="{{ route('edit', $thing->id) }}" class="btn btn-light">Modifier</a>
+  <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
+    <i class="bi bi-pencil-fill mr-1"></i> Modifier
+  </a>
   <h3 class="mt-4">
     Trucs rangés dans ce truc
   </h3>
   <form class="my-3" action="{{ route('add', $thing->id) }}" method="post">
     @csrf
     <button type="submit" class="btn btn-primary">
-      Ajouter un truc dans ce truc
+      <i class="bi bi-plus mr-1"></i> Ajouter un truc dans ce truc
     </button>
   </form>
   <ul>
