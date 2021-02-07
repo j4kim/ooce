@@ -12,10 +12,22 @@
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-light">Modifier</a>
-  <form class="mt-4" action="{{ route('add', $thing->id) }}" method="post">
+  <h3 class="mt-4">
+    Trucs rangés dans ce truc
+  </h3>
+  <form class="my-3" action="{{ route('add', $thing->id) }}" method="post">
     @csrf
     <button type="submit" class="btn btn-primary">
       Ajouter un truc dans ce truc
     </button>
   </form>
+  <ul>
+    @foreach ($thing->children as $child)
+      <li>
+        <a href="{{ route('show', $child->id) }}">
+          {{ $child->id }} <b>{{ $child->name }}</b>
+        </a>
+      </li>
+    @endforeach
+  </ul>
 @endsection
