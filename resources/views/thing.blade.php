@@ -1,6 +1,13 @@
 @extends('layout')
 
 @section('content')
+  @if ($thing->parent)
+  <div class="mb-2 font-weight-light">
+    <a href="{{ route('show', $thing->parent->id) }}">
+      ← {{ $thing->parent->name }}
+    </a>
+  </div>
+  @endif
   <h2>
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
