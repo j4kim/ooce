@@ -11,9 +11,7 @@
   <h2>
     {{ $thing->id }} <b>{{ $thing->name }}</b>
   </h2>
-  <p>
-    {{ $thing->description }}
-  </p>
+  <p style="white-space:pre">{{ $thing->description }}</p>
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-light">Modifier</a>
   <h3 class="mt-4">
     Trucs rangés dans ce truc
