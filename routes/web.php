@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/search', function (Request $request) {
     $thing = Thing::find($request->q);
     if ($thing) {
-        return redirect($thing->id);
+        return redirect(route('show', $thing->id));
     }
     return "No results, sorry";
 })->name('search');
@@ -41,20 +41,20 @@ Route::get('/{thing}/edit', function (Thing $thing) {
 
 Route::post('/{thing}/add', function (Thing $thing, Request $request) {
     $newthing = $thing->children()->create($request->all());
-    return redirect($newthing->id);
+    return redirect(route('edit', $newthing->id));
 })->name('add');
 
 Route::put('/{thing}/update', function (Thing $thing, Request $request) {
     $thing->update($request->all());
-    return redirect($thing->id);
+    return redirect(route('show', $thing->id));
 })->name('update');
 
 Route::put('/{thing}/move', function (Thing $thing, Request $request) {
     $thing->moveTo($request->parent_id);
-    return redirect($thing->id);
+    return redirect(route('show', $thing->id));
 })->name('move');
 
 Route::put('/{thing}/detach', function (Thing $thing) {
     $thing->moveTo(null);
-    return redirect($thing->id);
+    return redirect(route('show', $thing->id));
 })->name('detach');

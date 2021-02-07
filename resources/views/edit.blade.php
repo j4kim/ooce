@@ -5,7 +5,7 @@
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
   <p>
-    <form action="/{{$thing->id}}/update" method="post">
+    <form action="{{ route('update', $thing->id) }}" method="post">
       @csrf @method('PUT')
       <div class="row">
         <div class="col-12 col-sm-6 col-md-4 mb-2 mb-sm-0">
@@ -19,10 +19,10 @@
   </p>
   <p>
     @if ($thing->parent)
-      <form action="/{{ $thing->id }}/detach" method="post">
+      <form action="{{ route('detach', $thing->id) }}" method="post">
         @csrf @method('PUT')
         Rangé dans:
-        <a href="/{{ $thing->parent->id }}">
+        <a href="{{ route('show', $thing->parent->id) }}">
           {{ $thing->parent->name }}
         </a>
         <button type="submit" class="btn btn-primary">
@@ -30,7 +30,7 @@
         </button>
       </form>
     @else
-      <form action="/{{ $thing->id }}/move" method="post">
+      <form action="{{ route('move', $thing->id) }}" method="post">
         @csrf @method('PUT')
         Ranger dans:
         <input
@@ -43,7 +43,7 @@
       </form>
     @endif
   </p>
-  <form action="/{{$thing->id}}/add" method="post">
+  <form action="{{ route('add', $thing->id) }}" method="post">
     @csrf
     <button type="submit" class="btn btn-primary">
       Ajouter un truc dans ce truc

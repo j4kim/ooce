@@ -4,7 +4,7 @@
   <h2>
     {{$thing->id}} <b>{{$thing->name}}</b>
   </h2>
-  <form class="mt-4" action="{{$thing->id}}/add" method="post">
+  <form class="mt-4" action="{{ route('add', $thing->id) }}" method="post">
     @csrf
     <button type="submit" class="btn btn-primary">
       Ajouter un truc dans ce truc

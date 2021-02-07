@@ -11,7 +11,11 @@
     <body>
         <header class="text-white bg-primary">
             <div class="p-2 container d-flex justify-content-between align-items-center">
-                <h1 class="m-0">Oocé</h1>
+                <h1 class="m-0">
+                    <a class="text-white text-decoration-none" href="{{ url('/') }}">
+                        Oocé
+                    </a>
+                </h1>
                 <form action="search" method="get" class="m-b-md">
                     <input class="form-control" type="search" name="q" placeholder="Rechercher un truc">
                 </form>
