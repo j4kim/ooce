@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('index', compact('root', 'orphans'));
 })->name('index');
 
-Route::post('/', function (Thing $thing) {
+Route::post('/create', function () {
     $thing = Thing::create();
     return redirect(route('edit', $thing->id));
 })->name('create');
