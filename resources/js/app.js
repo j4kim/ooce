@@ -1,13 +1,8 @@
 require('./bootstrap');
 
-Vue.component('search-input', {
-  template: `
-    <div>
-      <input class="form-control" type="search" placeholder="Rechercher un truc">
-    </div>
-  `
-});
+import SearchInput from './SearchInput.vue';
 
 new Vue({
-  el: '#app'
+  el: '#app',
+  components: { SearchInput }
 });
