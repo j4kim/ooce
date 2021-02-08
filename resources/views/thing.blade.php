@@ -21,13 +21,15 @@
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
     <i class="bi bi-pencil-fill mr-1"></i> Modifier
   </a>
-  @if ($thing->thing_container)
+  @if ($thing->thing_container || count($thing->children))
     <h3 class="mt-4">
       Trucs rangés dans ce truc
     </h3>
     <form class="my-3" action="{{ route('add', $thing->id) }}" method="post">
       @csrf
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary"
+        @if(!$thing->thing_container) disabled @endif
+      >
         <i class="bi bi-plus mr-1"></i> Ajouter un truc dans ce truc
       </button>
     </form>
