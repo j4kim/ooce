@@ -21,6 +21,7 @@ class CreateThingsTable extends Migration
             $table->text('description')->nullable();
             $table->text('picture_path')->nullable();
             $table->timestamp('moved_at')->useCurrent();
+            $table->boolean('thing_container')->default(true);
         });
     }
 
