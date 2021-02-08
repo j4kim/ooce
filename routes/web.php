@@ -52,13 +52,12 @@ Route::post('/{thing}/add', function (Thing $thing, Request $request) {
 })->name('add');
 
 Route::put('/{thing}/update', function (Thing $thing, Request $request) {
-    $picture_path = $request->hasFile('picture') ?
-        $request->file('picture')->store('uploads') :
-        null;
-    $thing->fill(array_merge(
-        $request->except('picture'),
-        compact('picture_path')
-    ));
+    $attributes = $request->except('picture');
+    if ($request->hasFile('picture')) {
+        $picture_path = $request->file('picture')->store('uploads');
+        $attributes = array_merge($attributes, compact('picture_path'));
+    }
+    $thing->fill($attributes);
     if ($thing->isDirty('parent_id')) {
         $thing->moved_at = now();
     }
