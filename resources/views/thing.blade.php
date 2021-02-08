@@ -19,7 +19,7 @@
     </div>
   @endif
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
-    <i class="bi bi-pencil-fill mr-1"></i> Modifier
+    <i class="bi bi-pencil-fill"></i> Modifier
   </a>
   <a href="{{ route('duplicate', $thing->id) }}" class="btn btn-secondary">
     <span class="bi bi-files"></span> Dupliquer
@@ -33,7 +33,7 @@
       <button type="submit" class="btn btn-primary"
         @if(!$thing->thing_container) disabled @endif
       >
-        <i class="bi bi-plus mr-1"></i> Ajouter un truc dans ce truc
+        <i class="bi bi-plus"></i> Ajouter un truc dans ce truc
       </button>
     </form>
     <ul>

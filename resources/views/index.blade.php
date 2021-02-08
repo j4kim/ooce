@@ -26,7 +26,7 @@
   <form class="mt-5 text-center" action="{{ route('create') }}" method="post">
     @csrf
     <button type="submit" class="btn btn-primary">
-      <i class="bi bi-plus mr-1"></i> Créer un truc
+      <i class="bi bi-plus"></i> Créer un truc
     </button>
   </form>
 @endsection

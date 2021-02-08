@@ -41,13 +41,13 @@
         <div class="flex-fill">
           <a class="btn btn-light mr-2" href="{{ route('show', $thing->id) }}">Annuler</a>
           <button type="submit" form="update-form" class="btn btn-primary">
-            <i class="bi bi-check2 mr-1"></i> Enregistrer
+            <i class="bi bi-check2"></i> Enregistrer
           </button>
         </div>
         <form action="{{ route('delete', $thing->id) }}" method="post">
           @csrf @method('DELETE')
           <button type="submit" class="btn btn-danger mr-2">
-            <i class="bi bi-trash mr-1"></i> Supprimer
+            <i class="bi bi-trash"></i> Supprimer
           </button>
         </form>
       </div>
