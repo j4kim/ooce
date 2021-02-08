@@ -21,22 +21,24 @@
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
     <i class="bi bi-pencil-fill mr-1"></i> Modifier
   </a>
-  <h3 class="mt-4">
-    Trucs rangés dans ce truc
-  </h3>
-  <form class="my-3" action="{{ route('add', $thing->id) }}" method="post">
-    @csrf
-    <button type="submit" class="btn btn-primary">
-      <i class="bi bi-plus mr-1"></i> Ajouter un truc dans ce truc
-    </button>
-  </form>
-  <ul>
-    @foreach ($thing->children as $child)
-      <li>
-        <a href="{{ route('show', $child->id) }}">
-          {{ $child->id }} <b>{{ $child->name }}</b>
-        </a>
-      </li>
-    @endforeach
-  </ul>
+  @if ($thing->thing_container)
+    <h3 class="mt-4">
+      Trucs rangés dans ce truc
+    </h3>
+    <form class="my-3" action="{{ route('add', $thing->id) }}" method="post">
+      @csrf
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-plus mr-1"></i> Ajouter un truc dans ce truc
+      </button>
+    </form>
+    <ul>
+      @foreach ($thing->children as $child)
+        <li>
+          <a href="{{ route('show', $child->id) }}">
+            {{ $child->id }} <b>{{ $child->name }}</b>
+          </a>
+        </li>
+      @endforeach
+    </ul>
+  @endif
 @endsection
