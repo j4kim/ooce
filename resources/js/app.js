@@ -1,3 +1,3 @@
 require('./bootstrap');
 
-console.log("Hello");
+new Vue();
