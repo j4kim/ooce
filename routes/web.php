@@ -55,10 +55,14 @@ Route::put('/{thing}/update', function (Thing $thing, Request $request) {
     $picture_path = $request->hasFile('picture') ?
         $request->file('picture')->store('uploads') :
         null;
-    $thing->update(array_merge(
+    $thing->fill(array_merge(
         $request->except('picture'),
         compact('picture_path')
     ));
+    if ($thing->isDirty('parent_id')) {
+        $thing->moved_at = now();
+    }
+    $thing->save();
     return redirect(route('show', $thing->id));
 })->name('update');
 
