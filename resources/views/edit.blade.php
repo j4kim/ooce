@@ -20,6 +20,16 @@
           Photo:
           <input class="form-control" type="file" name="picture">
         </div>
+        <div class="col-12 mt-2 mb-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="thing_container" id="thing-container-input"
+              @if($thing->thing_container) checked @endif
+            >
+            <label class="form-check-label" for="thing-container-input">
+              Ce truc peut contenir d'autres trucs
+            </label>
+          </div>
+        </div>
         <div class="col-12 col-sm-6 col-md-4 mb-2">
           Rangé dans:
           <input class="form-control" name="parent_id" value="{{ $thing->parent_id }}">

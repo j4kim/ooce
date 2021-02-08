@@ -58,6 +58,7 @@ Route::put('/{thing}/update', function (Thing $thing, Request $request) {
         $attributes = array_merge($attributes, compact('picture_path'));
     }
     $thing->fill($attributes);
+    $thing->thing_container = $request->thing_container === 'on';
     if ($thing->isDirty('parent_id')) {
         $thing->moved_at = now();
     }
