@@ -52,9 +52,9 @@ Route::post('/{thing}/add', function (Thing $thing, Request $request) {
 })->name('add');
 
 Route::put('/{thing}/update', function (Thing $thing, Request $request) {
-    if ($request->hasFile('picture')) {
-        $picture_path = $request->file('picture')->store('uploads');
-    }
+    $picture_path = $request->hasFile('picture') ?
+        $request->file('picture')->store('uploads') :
+        null;
     $thing->update(array_merge(
         $request->except('picture'),
         compact('picture_path')
