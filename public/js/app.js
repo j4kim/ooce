@@ -31591,7 +31591,12 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-new Vue();
+Vue.component('search-input', {
+  template: "\n    <div>\n      <input class=\"form-control\" type=\"search\" placeholder=\"Rechercher un truc\">\n    </div>\n  "
+});
+new Vue({
+  el: '#app'
+});
 
 /***/ }),
 
