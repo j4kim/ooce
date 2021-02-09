@@ -12,6 +12,7 @@
       placeholder="Rechercher un truc"
       v-model="query"
       @input="debouncedSearch"
+      @change="checkAndOpenThing"
     />
     <datalist id="search-options">
       <option
@@ -44,6 +45,10 @@ export default {
         })
         .finally(() => this.loading = false)
     },
+    checkAndOpenThing() {
+      let id = parseInt(this.query)
+      window.location = `${window.appUrl}/${id}`
+    }
   }
 }
 </script>

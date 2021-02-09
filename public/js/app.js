@@ -1932,6 +1932,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1955,6 +1956,10 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         return _this.loading = false;
       });
+    },
+    checkAndOpenThing: function checkAndOpenThing() {
+      var id = parseInt(this.query);
+      window.location = "".concat(window.appUrl, "/").concat(id);
     }
   }
 });
@@ -20282,7 +20287,8 @@ var render = function() {
             _vm.query = $event.target.value
           },
           _vm.debouncedSearch
-        ]
+        ],
+        change: _vm.checkAndOpenThing
       }
     }),
     _vm._v(" "),
@@ -32605,8 +32611,8 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-var appUrl = document.body.dataset.appUrl;
-window.axios.defaults.baseURL = appUrl + '/api';
+window.appUrl = document.body.dataset.appUrl;
+window.axios.defaults.baseURL = window.appUrl + '/api';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
