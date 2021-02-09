@@ -2,11 +2,23 @@
 
 @section('content')
   @if ($thing->parent)
-  <div class="mb-2 font-weight-light">
-    <a href="{{ route('show', $thing->parent->id) }}">
-      ← {{ $thing->parent->name }}
-    </a>
-  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      @if ($thing->parent->parent)
+      <li class="breadcrumb-item">
+        <a href="{{ route('show', $thing->parent->parent->id) }}">
+          {{ $thing->parent->parent->name }}
+        </a>
+      </li>
+      @endif
+      <li class="breadcrumb-item">
+        <a href="{{ route('show', $thing->parent->id) }}">
+          {{ $thing->parent->name }}
+        </a>
+      </li>
+      <li style="padding-left:.5rem; color:#6c757d;">/</li>
+    </ol>
+  </nav>
   @endif
   <h2>
     {{ $thing->id }} <b>{{ $thing->name }}</b>
