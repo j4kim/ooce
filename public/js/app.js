@@ -1980,6 +1980,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1996,7 +1999,12 @@ __webpack_require__.r(__webpack_exports__);
     search: function search() {
       var _this = this;
 
-      if (!this.query) return;
+      if (this.query === "") {
+        this.things = [];
+        this.loading = false;
+        return;
+      }
+
       this.loading = true;
       axios.get("/search/".concat(this.query)).then(function (response) {
         _this.things = response.data;
@@ -2004,9 +2012,8 @@ __webpack_require__.r(__webpack_exports__);
         return _this.loading = false;
       });
     },
-    checkAndOpenThing: function checkAndOpenThing() {
-      var id = parseInt(this.query);
-      window.location = "".concat(window.appUrl, "/").concat(id);
+    getUrl: function getUrl(id) {
+      return "".concat(window.appUrl, "/").concat(id);
     }
   }
 });
@@ -2025,7 +2032,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.search-input {\n  display: flex;\n  align-items: baseline;\n}\n", ""]);
+exports.push([module.i, "\n.search-list-container {\n  position: relative;\n}\n.search-list-container > div {\n  position: absolute;\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -20307,8 +20314,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "search-input" }, [
-    _vm.loading ? _c("div", { staticClass: "me-2" }, [_vm._m(0)]) : _vm._e(),
-    _vm._v(" "),
     _c("input", {
       directives: [
         {
@@ -20319,11 +20324,7 @@ var render = function() {
         }
       ],
       staticClass: "form-control",
-      attrs: {
-        list: "search-options",
-        type: "search",
-        placeholder: "Rechercher un truc"
-      },
+      attrs: { type: "search", placeholder: "Rechercher un truc" },
       domProps: { value: _vm.query },
       on: {
         input: [
@@ -20334,38 +20335,39 @@ var render = function() {
             _vm.query = $event.target.value
           },
           _vm.debouncedSearch
-        ],
-        change: _vm.checkAndOpenThing
+        ]
       }
     }),
     _vm._v(" "),
-    _c(
-      "datalist",
-      { attrs: { id: "search-options" } },
-      _vm._l(_vm.things, function(thing) {
-        return _c("option", {
-          domProps: { value: thing.id + " - " + thing.name }
-        })
-      }),
-      0
-    )
+    _c("div", { staticClass: "search-list-container" }, [
+      _c(
+        "div",
+        { staticClass: "list-group" },
+        [
+          !_vm.loading
+            ? _vm._l(_vm.things, function(thing) {
+                return _c(
+                  "a",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    attrs: { href: _vm.getUrl(thing.id) }
+                  },
+                  [
+                    _vm._v("\n          " + _vm._s(thing.id) + " "),
+                    _c("b", [_vm._v(_vm._s(thing.name))])
+                  ]
+                )
+              })
+            : _c("div", { staticClass: "list-group-item disabled" }, [
+                _vm._v("\n        Chargement...\n      ")
+              ])
+        ],
+        2
+      )
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "spinner-grow spinner-grow-sm",
-        attrs: { role: "status" }
-      },
-      [_c("span", { staticClass: "visually-hidden" }, [_vm._v("Loading...")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

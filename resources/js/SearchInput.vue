@@ -1,25 +1,28 @@
 <template>
   <div class="search-input">
-    <div v-if="loading" class="me-2">
-      <div class="spinner-grow spinner-grow-sm" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
     <input
       class="form-control"
-      list="search-options"
       type="search"
       placeholder="Rechercher un truc"
       v-model="query"
       @input="debouncedSearch"
-      @change="checkAndOpenThing"
     />
-    <datalist id="search-options">
-      <option
-        v-for="thing in things"
-        :value="`${thing.id} - ${thing.name}`"
-      />
-    </datalist>
+    <div class="search-list-container">
+      <div class="list-group">
+        <template v-if="!loading">
+          <a
+            v-for="thing in things"
+            :href="getUrl(thing.id)"
+            class="list-group-item list-group-item-action"
+          >
+            {{ thing.id }} <b>{{ thing.name }}</b>
+          </a>
+        </template>
+        <div v-else class="list-group-item disabled">
+          Chargement...
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,7 +39,11 @@ export default {
   },
   methods: {
     search() {
-      if (!this.query) return
+      if (this.query === "") {
+        this.things = []
+        this.loading = false
+        return
+      }
       this.loading = true
       axios
         .get(`/search/${this.query}`)
@@ -45,17 +52,19 @@ export default {
         })
         .finally(() => this.loading = false)
     },
-    checkAndOpenThing() {
-      let id = parseInt(this.query)
-      window.location = `${window.appUrl}/${id}`
+    getUrl(id) {
+      return `${window.appUrl}/${id}`
     }
   }
 }
 </script>
 
 <style>
-.search-input {
-  display: flex;
-  align-items: baseline;
+.search-list-container {
+  position: relative;
+}
+.search-list-container > div {
+  position: absolute;
+  width: 100%;
 }
 </style>
