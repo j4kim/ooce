@@ -22,6 +22,7 @@ class Thing extends Model
     {
         return self::where('id', $query)
             ->orWhere('name', 'like', "%$query%")
+            ->orWhere('description', 'like', "%$query%")
             ->get();
     }
 }
