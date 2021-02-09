@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 mb-2">
           Description:
-          <textarea class="form-control" name="description" class="btn btn-primary">{{ $thing->description}}</textarea>
+          <textarea class="form-control" name="description" class="btn btn-primary" rows="5">{{ $thing->description}}</textarea>
         </div>
         <div class="col-12 mb-2">
           Photo:
