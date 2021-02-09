@@ -1983,6 +1983,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2014,6 +2015,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getUrl: function getUrl(id) {
       return "".concat(window.appUrl, "/").concat(id);
+    },
+    openSearchResultPage: function openSearchResultPage() {
+      window.location = "".concat(window.appUrl, "/search/").concat(this.query);
     }
   }
 });
@@ -20335,7 +20339,16 @@ var render = function() {
             _vm.query = $event.target.value
           },
           _vm.debouncedSearch
-        ]
+        ],
+        keyup: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.openSearchResultPage($event)
+        }
       }
     }),
     _vm._v(" "),

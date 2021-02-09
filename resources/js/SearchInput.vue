@@ -6,6 +6,7 @@
       placeholder="Rechercher un truc"
       v-model="query"
       @input="debouncedSearch"
+      @keyup.enter="openSearchResultPage"
     />
     <div class="search-list-container">
       <div class="list-group">
@@ -54,6 +55,9 @@ export default {
     },
     getUrl(id) {
       return `${window.appUrl}/${id}`
+    },
+    openSearchResultPage() {
+      window.location = `${window.appUrl}/search/${this.query}`
     }
   }
 }
