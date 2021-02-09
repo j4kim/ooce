@@ -17,11 +17,4 @@ class Thing extends Model
     {
         return $this->belongsTo('App\Thing', 'parent_id');
     }
-
-    public function moveTo($parent_id)
-    {
-        $this->parent_id = $parent_id;
-        $this->moved_at = now();
-        $this->save();
-    }
 }

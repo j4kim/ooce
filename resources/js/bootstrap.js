@@ -8,7 +8,12 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
+window.appUrl = document.body.dataset.appUrl;
+window.axios.defaults.baseURL = window.appUrl + '/api';
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.Vue = require('vue');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

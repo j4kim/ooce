@@ -46,19 +46,29 @@ Route::get('/{thing}/edit', function (Thing $thing) {
     return view('edit', compact('thing'));
 })->name('edit');
 
+Route::get('/{thing}/duplicate', function (Thing $thing) {
+    $newThing = $thing->replicate();
+    $newThing->save();
+    return redirect(route('show', $newThing));
+})->name('duplicate');
+
 Route::post('/{thing}/add', function (Thing $thing, Request $request) {
     $newthing = $thing->children()->create($request->all());
     return redirect(route('edit', $newthing->id));
 })->name('add');
 
 Route::put('/{thing}/update', function (Thing $thing, Request $request) {
-    $picture_path = $request->hasFile('picture') ?
-        $request->file('picture')->store('uploads') :
-        null;
-    $thing->update(array_merge(
-        $request->except('picture'),
-        compact('picture_path')
-    ));
+    $attributes = $request->except('picture');
+    if ($request->hasFile('picture')) {
+        $picture_path = $request->file('picture')->store('uploads');
+        $attributes = array_merge($attributes, compact('picture_path'));
+    }
+    $thing->fill($attributes);
+    $thing->thing_container = $request->thing_container === 'on';
+    if ($thing->isDirty('parent_id')) {
+        $thing->moved_at = now();
+    }
+    $thing->save();
     return redirect(route('show', $thing->id));
 })->name('update');
 

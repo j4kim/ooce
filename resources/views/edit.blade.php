@@ -20,6 +20,16 @@
           Photo:
           <input class="form-control" type="file" name="picture">
         </div>
+        <div class="col-12 mt-2 mb-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="thing_container" id="thing-container-input"
+              @if($thing->thing_container) checked @endif
+            >
+            <label class="form-check-label" for="thing-container-input">
+              Ce truc peut contenir d'autres trucs
+            </label>
+          </div>
+        </div>
         <div class="col-12 col-sm-6 col-md-4 mb-2">
           Rangé dans:
           <input class="form-control" name="parent_id" value="{{ $thing->parent_id }}">
@@ -31,13 +41,13 @@
         <div class="flex-fill">
           <a class="btn btn-light mr-2" href="{{ route('show', $thing->id) }}">Annuler</a>
           <button type="submit" form="update-form" class="btn btn-primary">
-            <i class="bi bi-check2 mr-1"></i> Enregistrer
+            <i class="bi bi-check2"></i> Enregistrer
           </button>
         </div>
         <form action="{{ route('delete', $thing->id) }}" method="post">
           @csrf @method('DELETE')
           <button type="submit" class="btn btn-danger mr-2">
-            <i class="bi bi-trash mr-1"></i> Supprimer
+            <i class="bi bi-trash"></i> Supprimer
           </button>
         </form>
       </div>
