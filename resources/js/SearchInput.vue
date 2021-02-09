@@ -66,5 +66,7 @@ export default {
 .search-list-container > div {
   position: absolute;
   width: 100%;
+  max-height: 252px;
+  overflow: auto;
 }
 </style>

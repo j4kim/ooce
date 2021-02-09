@@ -2032,7 +2032,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.search-list-container {\n  position: relative;\n}\n.search-list-container > div {\n  position: absolute;\n  width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.search-list-container {\n  position: relative;\n}\n.search-list-container > div {\n  position: absolute;\n  width: 100%;\n  max-height: 252px;\n  overflow: auto;\n}\n", ""]);
 
 // exports
 
