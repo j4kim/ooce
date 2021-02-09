@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('{thing}', function (Thing $thing) {
-    return $thing;
-});
-
-Route::post('{thing}', function (Thing $thing, Request $request) {
-    return $thing->children()->create($request->all());
-});
+Route::get('/search/{query}', function ($query) {
+    return Thing::where('id', $query)
+                ->orWhere('name', 'like', "%$query%")
+                ->get();
+})->name('search');

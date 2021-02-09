@@ -11,10 +11,10 @@
       type="search"
       placeholder="Rechercher un truc"
       v-model="query"
-      @input="handleInput"
+      @input="debouncedSearch"
     />
     <datalist id="search-options">
-      <option v-for="thing in things" value="Chargement..."/>
+      <option v-for="thing in things" :value="`${thing.id} - ${thing.name}`"/>
     </datalist>
   </div>
 </template>
@@ -32,13 +32,15 @@ export default {
   },
   methods: {
     search() {
-      console.log("search:", this.query)
-      this.loading = false
-    },
-    handleInput() {
+      if (!this.query) return
       this.loading = true
-      this.debouncedSearch()
-    }
+      axios
+        .get(`/search/${this.query}`)
+        .then(response => {
+          this.things = response.data
+        })
+        .finally(() => this.loading = false)
+    },
   }
 }
 </script>

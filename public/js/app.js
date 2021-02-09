@@ -1943,12 +1943,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     search: function search() {
-      console.log("search:", this.query);
-      this.loading = false;
-    },
-    handleInput: function handleInput() {
+      var _this = this;
+
+      if (!this.query) return;
       this.loading = true;
-      this.debouncedSearch();
+      axios.get("/search/".concat(this.query)).then(function (response) {
+        _this.things = response.data;
+      })["finally"](function () {
+        return _this.loading = false;
+      });
     }
   }
 });
@@ -20275,7 +20278,7 @@ var render = function() {
             }
             _vm.query = $event.target.value
           },
-          _vm.handleInput
+          _vm.debouncedSearch
         ]
       }
     }),
@@ -20284,7 +20287,9 @@ var render = function() {
       "datalist",
       { attrs: { id: "search-options" } },
       _vm._l(_vm.things, function(thing) {
-        return _c("option", { attrs: { value: "Chargement..." } })
+        return _c("option", {
+          domProps: { value: thing.id + " - " + thing.name }
+        })
       }),
       0
     )
@@ -32597,6 +32602,8 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+var appUrl = document.body.dataset.appUrl;
+window.axios.defaults.baseURL = appUrl + '/api';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
