@@ -30,12 +30,12 @@ Route::post('/create', function () {
     return redirect(route('edit', $thing->id));
 })->name('create');
 
-Route::get('/search', function (Request $request) {
-    $thing = Thing::find($request->q);
-    if ($thing) {
-        return redirect(route('show', $thing->id));
+Route::get('/search/{query}', function ($query) {
+    $things = Thing::search($query);
+    if (count($things) === 1) {
+        return redirect(route('show', $things->first->id));
     }
-    return "No results, sorry";
+    return view('search-result', compact('things', 'query'));
 })->name('search');
 
 Route::get('/{thing}', function (Thing $thing) {
