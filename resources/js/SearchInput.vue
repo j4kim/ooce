@@ -14,7 +14,10 @@
       @input="debouncedSearch"
     />
     <datalist id="search-options">
-      <option v-for="thing in things" :value="`${thing.id} - ${thing.name}`"/>
+      <option
+        v-for="thing in things"
+        :value="`${thing.id} - ${thing.name}`"
+      />
     </datalist>
   </div>
 </template>
