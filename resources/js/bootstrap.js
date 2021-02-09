@@ -8,6 +8,9 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
+var appUrl = document.body.dataset.appUrl;
+window.axios.defaults.baseURL = appUrl + '/api';
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.Vue = require('vue');
