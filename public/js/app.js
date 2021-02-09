@@ -1984,6 +1984,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -20318,39 +20323,51 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "search-input" }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.query,
-          expression: "query"
-        }
-      ],
-      staticClass: "form-control",
-      attrs: { type: "search", placeholder: "Rechercher un truc" },
-      domProps: { value: _vm.query },
-      on: {
-        input: [
-          function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.query = $event.target.value
-          },
-          _vm.debouncedSearch
-        ],
-        keyup: function($event) {
-          if (
-            !$event.type.indexOf("key") &&
-            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-          ) {
-            return null
+    _c("div", { staticClass: "input-group" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.query,
+            expression: "query"
           }
-          return _vm.openSearchResultPage($event)
+        ],
+        staticClass: "form-control",
+        attrs: { type: "search", placeholder: "Rechercher un truc" },
+        domProps: { value: _vm.query },
+        on: {
+          input: [
+            function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.query = $event.target.value
+            },
+            _vm.debouncedSearch
+          ],
+          keyup: function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.openSearchResultPage($event)
+          }
         }
-      }
-    }),
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary border",
+          attrs: { type: "button" },
+          on: { click: _vm.openSearchResultPage }
+        },
+        [_c("i", { staticClass: "bi bi-search" })]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "search-list-container" }, [
       _c(

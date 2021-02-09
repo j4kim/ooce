@@ -1,13 +1,18 @@
 <template>
   <div class="search-input">
-    <input
-      class="form-control"
-      type="search"
-      placeholder="Rechercher un truc"
-      v-model="query"
-      @input="debouncedSearch"
-      @keyup.enter="openSearchResultPage"
-    />
+    <div class="input-group">
+      <input
+        class="form-control"
+        type="search"
+        placeholder="Rechercher un truc"
+        v-model="query"
+        @input="debouncedSearch"
+        @keyup.enter="openSearchResultPage"
+      />
+      <button class="btn btn-primary border" type="button" @click="openSearchResultPage">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
     <div class="search-list-container">
       <div class="list-group">
         <template v-if="!loading">
