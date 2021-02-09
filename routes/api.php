@@ -16,7 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/search/{query}', function ($query) {
-    return Thing::where('id', $query)
-                ->orWhere('name', 'like', "%$query%")
-                ->get();
+    return Thing::search($query);
 })->name('search');

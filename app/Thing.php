@@ -17,4 +17,11 @@ class Thing extends Model
     {
         return $this->belongsTo('App\Thing', 'parent_id');
     }
+
+    public static function search($query)
+    {
+        return self::where('id', $query)
+            ->orWhere('name', 'like', "%$query%")
+            ->get();
+    }
 }
