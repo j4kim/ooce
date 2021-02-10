@@ -32,7 +32,7 @@
         </div>
         <div class="col-12 col-sm-6 col-md-4 mb-2">
           Rangé dans:
-          <thing-input name="parent_id" value="{{ $thing->parent_id }}" />
+          <thing-input-field name="parent_id" value="{{ $thing->parent_id }}" />
         </div>
       </div>
     </form>

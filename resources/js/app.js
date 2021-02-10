@@ -1,9 +1,9 @@
 require('./bootstrap');
 
 import SearchInput from './SearchInput.vue';
-import ThingInput from './ThingInput.vue';
+import ThingInputField from './ThingInputField.vue';
 
 new Vue({
   el: '#app',
-  components: { SearchInput,ThingInput }
+  components: { SearchInput, ThingInputField }
 });
