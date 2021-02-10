@@ -13,9 +13,9 @@
           </a>
           <div>{{ $thing->description }}</div>
         </div>
-        @if ($thing->picture_path)
+        @if ($thing->asset_path)
           <div>
-            <img src="{{  Storage::url($thing->picture_path) }}" style="max-height:60px">
+            <img src="{{  Storage::url($thing->asset_path) }}" style="max-height:60px">
           </div>
         @endif
       </div>
