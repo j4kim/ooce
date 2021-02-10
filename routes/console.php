@@ -24,10 +24,11 @@ Artisan::command('inspire', function () {
 Artisan::command('create-assets', function () {
     $things = Thing::whereNull('asset_path')->whereNotNull('picture_path')->get();
     foreach ($things as $thing) {
+        $this->line("Generate asset for thing $thing->id");
         try {
             $thing->asset_path = Asset::create($thing->picture_path);
             $thing->save();
-            $this->info("Generate asset for thing $thing->id");
+            $this->info($thing->asset_path);
         } catch (NotReadableException $e) {
             $this->error($e->getMessage());
         }
