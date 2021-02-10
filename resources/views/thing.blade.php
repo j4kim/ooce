@@ -13,9 +13,9 @@
   </h2>
   <p style="white-space:pre">{{ $thing->description }}</p>
   <p><small>Dernier mouvement: {{ $thing->moved_at }}</small></p>
-  @if($thing->picture_path)
+  @if($thing->asset_path)
     <div class="mb-3">
-      <img src="{{  Storage::url($thing->picture_path) }}" style="max-width:300px; max-height:300px">
+      <img src="{{  Storage::url($thing->asset_path) }}">
     </div>
   @endif
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
