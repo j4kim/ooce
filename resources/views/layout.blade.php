@@ -19,7 +19,7 @@
                             Oocé
                         </a>
                     </h1>
-                    <search-input/>
+                    <interactive-search/>
                 </div>
             </header>
             <main class="container pt-4">
