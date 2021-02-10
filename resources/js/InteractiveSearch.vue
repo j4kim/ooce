@@ -38,3 +38,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.search-input .thing-input input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+</style>
