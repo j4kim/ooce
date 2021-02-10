@@ -22,7 +22,7 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command('create-assets', function () {
-    $things = Thing::whereNull('asset_path')->whereNotNull('picture_path')->get();
+    $things = Thing::whereNotNull('picture_path')->get();
     foreach ($things as $thing) {
         $this->line("Generate asset for thing $thing->id");
         try {
