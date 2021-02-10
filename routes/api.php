@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/search/{query}', function ($query) {
-    return Thing::search($query);
+Route::get('/search/{query}', function (Request $request, $query) {
+    return Thing::search($query, $request->containersOnly === 'true');
 })->name('search');
 
 Route::get('/{thing}', function (Thing $thing) {
