@@ -31,7 +31,10 @@
 
 <script>
 export default {
-  props: ['value'],
+  props: {
+    value: Number,
+    containersOnly: Boolean
+  },
   data: () => ({
     query: "",
     debouncedSearch: undefined,
@@ -62,7 +65,9 @@ export default {
       }
       this.loading = true
       axios
-        .get(`/search/${this.query}`)
+        .get(`/search/${this.query}`, {
+          params: { containersOnly: this.containersOnly }
+        })
         .then(response => {
           this.things = response.data
         })

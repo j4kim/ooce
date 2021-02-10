@@ -2061,7 +2061,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['value'],
+  props: {
+    value: Number,
+    containersOnly: Boolean
+  },
   data: function data() {
     return {
       query: "",
@@ -2097,7 +2100,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       this.loading = true;
-      axios.get("/search/".concat(this.query)).then(function (response) {
+      axios.get("/search/".concat(this.query), {
+        params: {
+          containersOnly: this.containersOnly
+        }
+      }).then(function (response) {
         _this.things = response.data;
       })["finally"](function () {
         return _this.loading = false;
@@ -21434,6 +21441,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("thing-input", {
+        attrs: { "containers-only": true },
         model: {
           value: _vm.internalValue,
           callback: function($$v) {
