@@ -44,6 +44,8 @@ export default {
     this.debouncedSearch = _.debounce(this.search, 300)
     if (this.value) {
       this.fetchSelected()
+    } else {
+      this.searching = true
     }
   },
   methods: {
