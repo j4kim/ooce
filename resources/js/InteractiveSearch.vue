@@ -1,65 +1,36 @@
 <template>
   <div class="search-input">
     <div class="input-group">
-      <input
-        class="form-control"
-        type="search"
-        placeholder="Rechercher un truc"
-        v-model="query"
-        @input="debouncedSearch"
-        @keyup.enter="openSearchResultPage"
-      />
+      <thing-input v-model="thingId" @update="update" @enter="openSearchResultPage"/>
       <button class="btn btn-primary border" type="button" @click="openSearchResultPage">
         <i class="bi bi-search"></i>
       </button>
-    </div>
-    <div class="search-list-container">
-      <div class="list-group">
-        <template v-if="!loading">
-          <a
-            v-for="thing in things"
-            :href="getUrl(thing.id)"
-            class="list-group-item list-group-item-action"
-          >
-            {{ thing.id }} <b>{{ thing.name }}</b>
-          </a>
-        </template>
-        <div v-else class="list-group-item disabled">
-          Chargement...
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
+import ThingInput from "./ThingInput"
+
 export default {
+  components: { ThingInput },
   data: () => ({
-    query: "",
-    debouncedSearch: undefined,
-    loading: false,
-    things: []
+    thingId: undefined,
+    query: ""
   }),
-  created() {
-    this.debouncedSearch = _.debounce(this.search, 300)
+  watch: {
+    thingId(newValue) {
+      if (newValue) {
+        this.openThingPage()
+      }
+    }
   },
   methods: {
-    search() {
-      if (this.query === "") {
-        this.things = []
-        this.loading = false
-        return
-      }
-      this.loading = true
-      axios
-        .get(`/search/${this.query}`)
-        .then(response => {
-          this.things = response.data
-        })
-        .finally(() => this.loading = false)
+    update(query) {
+      this.query = query
     },
-    getUrl(id) {
-      return `${window.appUrl}/${id}`
+    openThingPage() {
+      window.location = `${window.appUrl}/${this.thingId}`
     },
     openSearchResultPage() {
       window.location = `${window.appUrl}/search/${this.query}`
@@ -67,16 +38,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.search-list-container {
-  position: relative;
-}
-.search-list-container > div {
-  position: absolute;
-  width: 100%;
-  max-height: 252px;
-  overflow: auto;
-  z-index: 1;
-}
-</style>
