@@ -8,6 +8,7 @@
       @input="input"
       :readonly="!searching"
       @click="searching = true"
+      @keyup.enter="$emit('enter')"
     />
     <div class="search-list-container" v-if="searching">
       <div class="list-group">
