@@ -5,7 +5,7 @@
       type="search"
       placeholder="Rechercher un truc"
       v-model="query"
-      @input="debouncedSearch"
+      @input="input"
       :readonly="!searching"
       @click="searching = true"
     />
@@ -49,6 +49,10 @@ export default {
     }
   },
   methods: {
+    input() {
+      this.debouncedSearch()
+      this.$emit('update', this.query)
+    },
     search() {
       if (this.query === "") {
         this.things = []
