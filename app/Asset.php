@@ -17,5 +17,6 @@ class Asset
     });
     $assetPath = "$folder/{$img->filename}_300.$img->extension";
     Storage::put($assetPath, $img->encode());
+    return $assetPath;
   }
 }
