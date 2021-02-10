@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-12 col-sm-6 col-md-4 mb-2">
           Nom:
-          <input class="form-control" type="text" name="name" autofocus value="{{$thing->name}}">
+          <input class="form-control" type="text" name="name" value="{{$thing->name}}" required>
         </div>
         <div class="col-12 mb-2">
           Description:
@@ -32,7 +32,7 @@
         </div>
         <div class="col-12 col-sm-6 col-md-4 mb-2">
           Rangé dans:
-          <input class="form-control" name="parent_id" value="{{ $thing->parent_id }}">
+          <thing-input-field name="parent_id" value="{{ $thing->parent_id }}" />
         </div>
       </div>
     </form>

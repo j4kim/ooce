@@ -17,4 +17,17 @@ class Thing extends Model
     {
         return $this->belongsTo('App\Thing', 'parent_id');
     }
+
+    public static function search($query, $containersOnly = false)
+    {
+        $qb = self::where(function ($innerQb) use ($query) {
+            $innerQb->where('id', $query)
+                    ->orWhere('name', 'like', "%$query%")
+                    ->orWhere('description', 'like', "%$query%");
+        });
+        if ($containersOnly) {
+            $qb->where('thing_container', 1);
+        }
+        return $qb->get();
+    }
 }
