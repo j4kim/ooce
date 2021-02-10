@@ -77,5 +77,6 @@ export default {
   width: 100%;
   max-height: 252px;
   overflow: auto;
+  z-index: 1;
 }
 </style>
