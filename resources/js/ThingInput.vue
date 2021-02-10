@@ -1,19 +1,20 @@
 <template>
-  <div class="search-input">
-    <input type="hidden" :name="name" v-model="value">
+  <div class="thing-input">
     <input
       class="form-control"
       type="search"
       placeholder="Rechercher un truc"
       v-model="query"
       @input="debouncedSearch"
+      :readonly="!searching"
+      @click="searching = true"
     />
-    <div class="search-list-container">
+    <div class="search-list-container" v-if="searching">
       <div class="list-group">
         <template v-if="!loading">
           <a
             v-for="thing in things"
-            @click="$emit('input', thing)"
+            @click="select(thing)"
             class="list-group-item list-group-item-action"
           >
             {{ thing.id }} <b>{{ thing.name }}</b>
@@ -29,18 +30,21 @@
 
 <script>
 export default {
-  props: [
-    "value",
-    "name"
-  ],
+  props: ['value'],
   data: () => ({
     query: "",
     debouncedSearch: undefined,
     loading: false,
-    things: []
+    things: [],
+    selected: undefined,
+    searching: false,
+    updatedValue: undefined
   }),
   created() {
     this.debouncedSearch = _.debounce(this.search, 300)
+    if (this.value) {
+      this.fetchSelected()
+    }
   },
   methods: {
     search() {
@@ -57,6 +61,16 @@ export default {
         })
         .finally(() => this.loading = false)
     },
+    async fetchSelected() {
+      let response = await axios.get(this.value)
+      let thing = response.data
+      this.query = `${thing.id} - ${thing.name}`
+    },
+    select(thing) {
+      this.$emit('input', thing.id)
+      this.searching = false
+      this.query = `${thing.id} - ${thing.name}`
+    }
   }
 }
 </script>
