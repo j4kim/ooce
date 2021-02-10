@@ -1,5 +1,6 @@
 <?php
 
+use App\Asset;
 use App\Thing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -61,7 +62,8 @@ Route::put('/{thing}/update', function (Thing $thing, Request $request) {
     $attributes = $request->except('picture');
     if ($request->hasFile('picture')) {
         $picture_path = $request->file('picture')->store('uploads');
-        $attributes = array_merge($attributes, compact('picture_path'));
+        $asset_path = Asset::create($picture_path);
+        $attributes = array_merge($attributes, compact('picture_path', 'asset_path'));
     }
     $thing->fill($attributes);
     $thing->thing_container = $request->thing_container === 'on';
