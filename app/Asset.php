@@ -11,11 +11,11 @@ class Asset
     $folder = dirname($picturePath);
     $absolutePath = Storage::path($picturePath);
     $img = Image::make($absolutePath);
-    $img->resize(300, 300, function ($constraint) {
+    $img->resize(400, 400, function ($constraint) {
       $constraint->aspectRatio();
       $constraint->upsize();
     });
-    $assetPath = "$folder/{$img->filename}_300.$img->extension";
+    $assetPath = "$folder/{$img->filename}_400.$img->extension";
     Storage::put($assetPath, $img->encode());
     return $assetPath;
   }
