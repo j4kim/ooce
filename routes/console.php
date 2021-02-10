@@ -1,7 +1,10 @@
 <?php
 
+use App\Asset;
+use App\Thing;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Intervention\Image\Exception\NotReadableException;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,16 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('create-assets', function () {
+    $things = Thing::whereNull('asset_path')->whereNotNull('picture_path')->get();
+    foreach ($things as $thing) {
+        try {
+            $thing->asset_path = Asset::create($thing->picture_path);
+            $thing->save();
+            $this->info("Generate asset for thing $thing->id");
+        } catch (NotReadableException $e) {
+            $this->error($e->getMessage());
+        }
+    }
+});
