@@ -11,7 +11,7 @@
   <h2>
     {{ $thing->id }} <b>{{ $thing->name }}</b>
   </h2>
-  <p style="white-space:pre">{{ $thing->description }}</p>
+  <p style="white-space:pre-line">{{ $thing->description }}</p>
   <p><small>Dernier mouvement: {{ $thing->moved_at }}</small></p>
   @if($thing->asset_path)
     <div class="mb-3">
