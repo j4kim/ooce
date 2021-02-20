@@ -2139,6 +2139,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$emit('input', thing.id);
       this.searching = false;
       this.query = "".concat(thing.id, " - ").concat(thing.name);
+    },
+    clear: function clear() {
+      this.query = '';
+      this.searching = true;
+      this.$emit('input', '');
     }
   }
 });
@@ -21360,9 +21365,7 @@ var render = function() {
           },
           _vm.input
         ],
-        click: function($event) {
-          _vm.searching = true
-        },
+        click: _vm.clear,
         keyup: function($event) {
           if (
             !$event.type.indexOf("key") &&

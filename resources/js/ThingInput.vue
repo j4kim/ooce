@@ -7,7 +7,7 @@
       v-model="query"
       @input="input"
       :readonly="!searching"
-      @click="searching = true"
+      @click="clear"
       @keyup.enter="$emit('enter')"
     />
     <div class="search-list-container" v-if="searching">
@@ -82,6 +82,11 @@ export default {
       this.$emit('input', thing.id)
       this.searching = false
       this.query = `${thing.id} - ${thing.name}`
+    },
+    clear() {
+      this.query = ''
+      this.searching = true
+      this.$emit('input', '')
     }
   }
 }
