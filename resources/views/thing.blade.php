@@ -15,7 +15,7 @@
   <p><small>Dernier mouvement: {{ $thing->moved_at }}</small></p>
   @if($thing->asset_path)
     <div class="mb-3">
-      <img src="{{  Storage::url($thing->asset_path) }}">
+      <img src="{{  Storage::url($thing->asset_path) }}" style="max-width:200px;max-height:200px">
     </div>
   @endif
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
