@@ -10,7 +10,7 @@ class Asset
   public static function create($picturePath) {
     $folder = dirname($picturePath);
     $absolutePath = Storage::path($picturePath);
-    $img = Image::make($absolutePath);
+    $img = Image::make($absolutePath)->orientate();
     $img->resize(400, 400, function ($constraint) {
       $constraint->aspectRatio();
       $constraint->upsize();
