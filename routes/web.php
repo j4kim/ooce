@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/create', function () {
         $thing = Thing::create();
         return redirect(route('edit', $thing->id));
-    })->name('create');
+    })->middleware('isjojo')->name('create');
 
     Route::get('/search/{query}', function ($query) {
         $things = Thing::search($query);
@@ -59,12 +59,12 @@ Route::group(['middleware' => ['auth']], function () {
         $newThing = $thing->replicate();
         $newThing->save();
         return redirect(route('show', $newThing));
-    })->name('duplicate');
+    })->middleware('isjojo')->name('duplicate');
 
     Route::post('/{thing}/add', function (Thing $thing, Request $request) {
         $newthing = $thing->children()->create($request->all());
         return redirect(route('edit', $newthing->id));
-    })->name('add');
+    })->middleware('isjojo')->name('add');
 
     Route::put('/{thing}/update', function (Thing $thing, Request $request) {
         $attributes = $request->except('picture');
@@ -80,12 +80,12 @@ Route::group(['middleware' => ['auth']], function () {
         }
         $thing->save();
         return redirect(route('show', $thing->id));
-    })->name('update');
+    })->middleware('isjojo')->name('update');
 
     Route::delete('/{thing}', function (Thing $thing) {
         $parentId = $thing->parent_id;
         $thing->delete();
         return redirect($parentId ? route('show', $parentId) : '/');
-    })->name('delete');
+    })->middleware('isjojo')->name('delete');
 
 });
