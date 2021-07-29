@@ -23,7 +23,6 @@
                             Oocé
                         </a>
                     </h1>
-                    {{ Auth::user()->name }}
                     <interactive-search class="ms-2"/>
                 </div>
             </header>
