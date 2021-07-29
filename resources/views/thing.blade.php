@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+
   @if ($thing->parent)
   <div class="mb-2 font-weight-light">
     <a href="{{ route('show', $thing->parent->id) }}">
@@ -8,11 +9,13 @@
     </a>
   </div>
   @endif
+
   <h2>
     {{ $thing->id }} <b>{{ $thing->name }}</b>
   </h2>
   <p style="white-space:pre-line">{{ $thing->description }}</p>
   <p><small>Dernier mouvement: {{ $thing->moved_at }}</small></p>
+
   @if($thing->asset_path)
     <div class="mb-3">
       <a href="{{ Storage::url($thing->picture_path) }}">
@@ -20,6 +23,7 @@
       </a>
     </div>
   @endif
+
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
     <i class="bi bi-pencil-fill"></i> Modifier
   </a>
@@ -58,4 +62,5 @@
       @endforeach
     </ul>
   @endif
+
 @endsection
