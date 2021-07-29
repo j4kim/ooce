@@ -23,9 +23,19 @@
   <a href="{{ route('edit', $thing->id) }}" class="btn btn-secondary">
     <i class="bi bi-pencil-fill"></i> Modifier
   </a>
-  <a href="{{ route('duplicate', $thing->id) }}" class="btn btn-secondary">
-    <span class="bi bi-files"></span> Dupliquer
-  </a>
+
+  <form
+    action="{{ route('duplicate', $thing->id) }}"
+    method="post"
+    id="duplicate-form"
+    class="d-inline"
+  >
+    @csrf @method('PUT')
+    <button type="submit" class="btn btn-primary">
+      <span class="bi bi-files"></span> Dupliquer
+    </button>
+  </form>
+
   @if ($thing->thing_container || count($thing->children))
     <h3 class="mt-4">
       Trucs rangés dans ce truc

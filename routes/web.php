@@ -47,7 +47,7 @@ Route::get('/{thing}/edit', function (Thing $thing) {
     return view('edit', compact('thing'));
 })->name('edit');
 
-Route::get('/{thing}/duplicate', function (Thing $thing) {
+Route::put('/{thing}/duplicate', function (Thing $thing) {
     $newThing = $thing->replicate();
     $newThing->save();
     return redirect(route('show', $newThing));
