@@ -17,7 +17,7 @@
     <body data-app-url="{{ env('APP_URL') }}">
         <div id="app">
             <header class="text-white bg-primary">
-                <div class="p-2 container d-flex justify-content-between align-items-center">
+                <div class="p-2 container d-flex align-items-center">
                     <h1 class="m-0 flex-grow-1">
                         <a class="text-white text-decoration-none" href="{{ url('/') }}">
                             Oocé
