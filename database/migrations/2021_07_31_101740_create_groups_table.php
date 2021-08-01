@@ -17,7 +17,6 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->foreignId('root_thing_id')->constrained('things');
             $table->integer('counter')->default(1);
         });
     }
