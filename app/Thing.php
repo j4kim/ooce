@@ -8,6 +8,20 @@ class Thing extends Model
 {
     protected $guarded = [];
 
+    protected static function booted()
+    {
+        static::creating(function ($thing) {
+            $ref = $thing->group->counter++;
+            $thing->group->save();
+            $thing->ref = $ref;
+        });
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('App\Group');
+    }
+
     public function children()
     {
         return $this->hasMany('App\Thing', 'parent_id');

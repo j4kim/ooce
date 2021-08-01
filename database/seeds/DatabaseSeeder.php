@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
         $group->things()->create([
             'name' => 'Neuve 3',
             'is_root' => true,
-            'ref' => 1
         ]);
     }
 }
